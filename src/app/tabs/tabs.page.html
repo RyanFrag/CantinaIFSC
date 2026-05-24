@@ -8,6 +8,7 @@
     <ion-tab-button tab="tab2" href="/tabs/tab2">
       <ion-icon name="cart"></ion-icon>
       <ion-label>Carrinho</ion-label>
+      <ion-badge *ngIf="quantidadeCarrinho > 0" color="danger">{{ quantidadeCarrinho }}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="tab3" href="/tabs/tab3">

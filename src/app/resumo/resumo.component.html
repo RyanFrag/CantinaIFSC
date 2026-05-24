@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Resumo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="resumo-card">
+    <ion-card-header>
+      <ion-card-title>Resumo do pedido</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="quantidadeItens > 0">
+        <div class="resumo-item" *ngFor="let item of carrinho">
+          <span>{{ item.nome }}</span>
+          <span>R$ {{ item.preco | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="resumo-total">
+          <span>Quantidade de itens</span>
+          <span>{{ quantidadeItens }}</span>
+        </div>
+
+        <div class="resumo-total destaque">
+          <span>Total</span>
+          <span>R$ {{ totalPreco | number:'1.2-2' }}</span>
+        </div>
+
+        <ion-button expand="block" color="danger" fill="outline" (click)="removerTodosItensCarrinho()">
+          <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+          Limpar carrinho
+        </ion-button>
+      </div>
+
+      <div *ngIf="quantidadeItens === 0" class="vazio">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <p>Nenhum item no carrinho</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
