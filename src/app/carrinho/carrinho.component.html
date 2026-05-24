@@ -1,29 +1,21 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Carrinho</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div *ngIf="listaCarrinho.length === 0" class="vazio">
+  <ion-icon name="cart-outline"></ion-icon>
+  <p>Seu carrinho está vazio</p>
+  <p class="dica">Adicione itens pelo cardápio</p>
+</div>
 
-<ion-content class="ion-padding">
-  <div *ngIf="listaCarrinho.length === 0" class="vazio">
-    <ion-icon name="cart-outline"></ion-icon>
-    <p>Seu carrinho está vazio</p>
-    <p class="dica">Adicione itens pelo cardápio</p>
-  </div>
+<ion-card *ngFor="let item of listaCarrinho" class="item-card">
+  <ion-card-header>
+    <ion-card-title>{{ item.nome }}</ion-card-title>
+    <ion-card-subtitle>{{ item.categoria }}</ion-card-subtitle>
+  </ion-card-header>
 
-  <ion-card *ngFor="let item of listaCarrinho" class="item-card">
-    <ion-card-header>
-      <ion-card-title>{{ item.nome }}</ion-card-title>
-      <ion-card-subtitle>{{ item.categoria }}</ion-card-subtitle>
-    </ion-card-header>
+  <ion-card-content>
+    <p class="preco">R$ {{ item.preco | number:'1.2-2' }}</p>
 
-    <ion-card-content>
-      <p class="preco">R$ {{ item.preco | number:'1.2-2' }}</p>
-
-      <ion-button expand="block" color="danger" fill="outline" (click)="removerDoCarrinho(item)">
-        <ion-icon slot="start" name="close-circle-outline"></ion-icon>
-        Remover
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+    <ion-button expand="block" color="danger" fill="outline" (click)="removerDoCarrinho(item)">
+      <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+      Remover
+    </ion-button>
+  </ion-card-content>
+</ion-card>
